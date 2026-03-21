@@ -1,0 +1,49 @@
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Coding Agent runtime data
+.coding-agent/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+uv.lock
+
+# Packaging and build output
+build/
+dist/
+*.egg-info/
+.eggs/
+docs/*
+docs
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
