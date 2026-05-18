@@ -36,5 +36,4 @@ def run_dir(target_path: Path, run_id: str) -> Path:
 
 
 def db_path(target_path: Path) -> Path:
-    """Locate the project-local SQLite database file."""
     return agent_dir(target_path) / "coding-agent.db"
