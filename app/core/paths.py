@@ -27,6 +27,7 @@ def ensure_agent_dir(target_path: Path) -> Path:
 
 
 def runs_dir(target_path: Path) -> Path:
+    """Return the parent directory for persisted run artifacts."""
     return agent_dir(target_path) / "runs"
 
 
