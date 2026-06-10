@@ -4,5 +4,5 @@ from datetime import datetime, timezone
 
 
 def naive_utcnow() -> datetime:
-    """Return UTC with timezone metadata removed for naive database columns."""
+    """Naive UTC timestamp; DB columns and schemas store naive UTC by contract."""
     return datetime.now(timezone.utc).replace(tzinfo=None)
