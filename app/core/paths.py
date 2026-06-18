@@ -33,7 +33,6 @@ def runs_dir(target_path: Path) -> Path:
 
 
 def run_dir(target_path: Path, run_id: str) -> Path:
-    """Locate the artifact directory belonging to one run identifier."""
     return runs_dir(target_path) / run_id
 
 
