@@ -6,6 +6,7 @@ from app.core.exceptions import BootstrapError
 
 # 确保路径是绝对路径
 def ensure_absolute_path(path: str) -> Path:
+    """Expand the user directory and reject relative project paths."""
     target = Path(path).expanduser()
     if not target.is_absolute():
         raise BootstrapError("path must be an absolute path")
