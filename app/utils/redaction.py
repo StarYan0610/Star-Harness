@@ -33,7 +33,7 @@ def redact_text(value: object | None) -> str:
 
 
 def redact_data(value: Any) -> Any:
-    """Recursively redact structured event, plan, and finding payloads."""
+    """Mask sensitive values recursively while preserving supported container types."""
     if isinstance(value, str):
         return redact_text(value)
     if isinstance(value, dict):
