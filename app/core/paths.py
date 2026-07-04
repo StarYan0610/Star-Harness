@@ -14,7 +14,6 @@ def ensure_absolute_path(path: str) -> Path:
 
 # 返回 .coding-agent 目录路径
 def agent_dir(target_path: Path) -> Path:
-    """Return the runtime metadata directory within a project."""
     return target_path / ".coding-agent"
 
 # 确保代理目录存在
