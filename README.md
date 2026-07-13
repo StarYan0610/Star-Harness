@@ -10,6 +10,18 @@ python3.11 -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 ```
 
+## Reviewers And Safety
+
+默认审查器是 `command`：Task 配置 `verification_commands` 时，会在目标项目目录按顺序执行；没有配置时才使用基础检查。可通过 `DEFAULT_REVIEWER=basic` 仅使用基础检查，或通过 `DEFAULT_REVIEWER=command` 恢复命令验收。
+
+验证命令和执行器直接使用当前用户的本地权限。命令当前为 shell 兼容执行模式，因此只能接受受信任的需求、Planner 输出和项目内容；请先查看 Git 工作区状态。工具不会自动 push。
+
+执行器和验证命令都有超时保护：单次执行器调用超过 `EXECUTOR_TIMEOUT_SECONDS`（默认 3600 秒）、单条验证命令超过 `VERIFICATION_TIMEOUT_SECONDS`（默认 300 秒）时，会终止整个进程组并把该次尝试记为失败，避免挂起的子进程阻塞 Run 或在后台泄漏。
+
+`update`（以及已有 Git 仓库上的 `create`）会记录分支、dirty 状态、diff 摘要和可能影响的文件。默认 dirty 只提示；可用 `REQUIRE_CLEAN_GIT_WORKTREE=true` 或 `--require-clean-git-worktree` 将其作为失败条件。`COMMIT_ON_SUCCESS=true` 或 `--commit-on-success` 仅会在可提交的 Git 工作区创建一次本地 commit，且永不自动 push。若运行前工作区已 dirty，工具会跳过自动提交，避免把用户已有改动一起暂存；非 Git 目录也只会记录跳过，不会因此失败。
+
+`.coding-agent/memory.md` 存在时会以只读项目上下文传给 Planner 和 Executor；同一 Run 的后续 Task 还会收到之前已通过 Task 的标题、摘要和修改范围。终端摘要、`events.jsonl`、`report.md` 与重试回注会系统性脱敏常见密钥形式。
+
 ## Executors
 
 支持两种执行器，通过 `--executor codex|claude` 或 `DEFAULT_EXECUTOR` 选择：
