@@ -10,6 +10,39 @@ python3.11 -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 ```
 
+## LLM Planner
+
+任务拆分支持两种 planner：
+
+- `simple`：本地规则拆分，适合无 API key 的开发和测试。
+- `openai`：通过 OpenAI-compatible 协议客户端调用 LLM，可接入 DeepSeek 或 OpenAI。
+
+创建 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+通过 OpenAI-compatible 协议接入 DeepSeek：
+
+```env
+DEFAULT_PLANNER=openai
+LLM_PROVIDER=openai
+OPENAI_API_KEY=你的 DeepSeek API Key
+OPENAI_MODEL=deepseek-v4-flash
+OPENAI_BASE_URL=https://api.deepseek.com
+OPENAI_TIMEOUT_SECONDS=60
+PLANNER_TEMPERATURE=0.1
+```
+
+如果要退回本地规则拆分：
+
+```env
+DEFAULT_PLANNER=simple
+```
+
+`LLM_PROVIDER=openai` 表示使用 OpenAI 协议客户端；真实模型服务由 `OPENAI_BASE_URL` 和 `OPENAI_MODEL` 决定。`.env.example` 默认指向 DeepSeek；若没有可用的 `OPENAI_API_KEY`，运行时会自动降级到 `simple`，不会把密钥值打印到终端或产物中。
+
 ## Reviewers And Safety
 
 默认审查器是 `command`：Task 配置 `verification_commands` 时，会在目标项目目录按顺序执行；没有配置时才使用基础检查。可通过 `DEFAULT_REVIEWER=basic` 仅使用基础检查，或通过 `DEFAULT_REVIEWER=command` 恢复命令验收。
