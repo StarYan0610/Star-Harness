@@ -16,7 +16,6 @@ _BRACKETED_SEVERITY_PREFIX = re.compile(
 
 
 def load_audit_report(path: str) -> AuditReport:
-    """Load an audit report and normalize supported JSON or plain-text findings."""
     report_path = Path(path).expanduser()
     raw = report_path.read_text(encoding="utf-8")
     entries = _json_entries(json.loads(raw)) if report_path.suffix.lower() == ".json" else _text_entries(raw)
