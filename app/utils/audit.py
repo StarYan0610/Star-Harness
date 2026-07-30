@@ -48,7 +48,6 @@ def _json_entries(payload: object) -> list[object]:
 
 
 def _text_entries(raw: str) -> list[object]:
-    """Split a plain-text audit report into candidate finding entries."""
     entries: list[object] = []
     heading: str | None = None
     body: list[str] = []
