@@ -61,3 +61,17 @@ DEFAULT_PLANNER=simple
 
 - `codex`：调用 Codex CLI（`codex exec --sandbox workspace-write`），在沙箱内允许工作区写入。
 - `claude`：调用 Claude Code CLI 无头模式（`claude -p`）。默认 `CLAUDE_PERMISSION_MODE=acceptEdits`——只自动接受文件编辑，命令执行仍受权限门禁（验证由 Reviewer 的命令验收承担）。需要执行器自己跑命令时可设为 `bypassPermissions`，这等价于 `--dangerously-skip-permissions`，会跳过所有权限确认，请自行评估风险。两种执行器都受 `EXECUTOR_TIMEOUT_SECONDS` 超时保护。
+
+## Commands
+
+新写项目：
+
+```bash
+coding-agent create --path /abs/new-project --requirement "搭建项目骨架" --executor codex
+```
+
+更新项目：
+
+```bash
+coding-agent update --path /abs/project --update-mode requirement --requirement "增加邮箱校验"
+```
