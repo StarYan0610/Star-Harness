@@ -75,3 +75,9 @@ coding-agent create --path /abs/new-project --requirement "搭建项目骨架" -
 ```bash
 coding-agent update --path /abs/project --update-mode requirement --requirement "增加邮箱校验"
 ```
+
+审计报告优化：
+
+```bash
+coding-agent update --path /abs/project --update-mode audit-report --audit-report /abs/audit.md --requirement "优先修复高风险问题"
+```
