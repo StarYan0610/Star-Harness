@@ -81,3 +81,9 @@ coding-agent update --path /abs/project --update-mode requirement --requirement 
 ```bash
 coding-agent update --path /abs/project --update-mode audit-report --audit-report /abs/audit.md --requirement "优先修复高风险问题"
 ```
+
+查看状态：
+
+```bash
+coding-agent status --path /abs/project --run-id <uuid>
+```
