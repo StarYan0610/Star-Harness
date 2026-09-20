@@ -35,6 +35,7 @@ def load_audit_report(path: str) -> AuditReport:
 
 
 def _json_entries(payload: object) -> list[object]:
+    """Extract candidate finding entries from supported JSON container layouts."""
     if isinstance(payload, list):
         return payload
     if not isinstance(payload, dict):
