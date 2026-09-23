@@ -17,7 +17,7 @@ def agent_dir(target_path: Path) -> Path:
 
 # 确保代理目录存在
 def ensure_agent_dir(target_path: Path) -> Path:
-    """Create the runtime directory with a local self-ignore file."""
+    """Create .coding-agent and keep it out of the user's Git status via a self-ignore."""
     directory = agent_dir(target_path)
     directory.mkdir(parents=True, exist_ok=True)
     gitignore = directory / ".gitignore"
