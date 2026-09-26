@@ -131,6 +131,7 @@ def _item_from_text(value: str) -> AuditItem | None:
 
 
 def _normalize_severity(value: str) -> str:
+    """Map a supplied severity label to the normalized report vocabulary."""
     lowered = value.strip().lower()
     if lowered in {"critical", "high", "blocker", "p0", "p1"}:
         return "high"
