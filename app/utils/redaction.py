@@ -25,7 +25,7 @@ _KNOWN_TOKEN = re.compile(r"\b(?:sk-[A-Za-z0-9_-]{8,}|ghp_[A-Za-z0-9]{8,}|github
 
 
 def redact_text(value: object | None) -> str:
-    """Mask common credential representations before exposing a text value."""
+    """Redact common credential forms before text crosses an output boundary."""
     text = "" if value is None else str(value)
     text = _BEARER.sub(lambda match: f"{match.group(1)}{REDACTED}", text)
     text = _ASSIGNMENT.sub(lambda match: f"{match.group('prefix')}{REDACTED}", text)
