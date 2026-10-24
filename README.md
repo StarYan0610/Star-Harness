@@ -87,3 +87,11 @@ coding-agent update --path /abs/project --update-mode audit-report --audit-repor
 ```bash
 coding-agent status --path /abs/project --run-id <uuid>
 ```
+
+查看报告：
+
+```bash
+coding-agent report --path /abs/project --run-id <uuid>
+```
+
+第一版会直接在 `--path` 目录中创建或修改代码，不使用隔离目录。核心主表为 `runs` 和 `tasks`，状态流转由 `WorkflowStateMachine` 控制。
