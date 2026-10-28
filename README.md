@@ -14,6 +14,18 @@ python3.11 -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 ```
 
+### Windows PowerShell
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+.\.venv\Scripts\python.exe -m pip install -e ".[test]"
+.\.venv\Scripts\python.exe -m app.cli.main --help
+```
+
+如果没有安装 `py` 启动器，请用已安装的 Python 3.11+ 解释器绝对路径创建虚拟环境。
+直接调用虚拟环境解释器无需执行激活脚本，也不需要修改 PowerShell 执行策略。
+
 ## LLM Planner
 
 任务拆分支持两种 planner：
