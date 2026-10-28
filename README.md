@@ -4,6 +4,10 @@
 
 ## Install
 
+需要 Python 3.11 或更高版本。以下命令均在本项目根目录执行。
+
+### macOS / Linux
+
 ```bash
 python3.11 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip setuptools wheel
