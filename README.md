@@ -39,6 +39,15 @@ py -3.11 -m venv .venv
 cp .env.example .env
 ```
 
+Windows PowerShell 对应命令：
+
+```powershell
+Copy-Item .env.example .env
+```
+
+如果 `.env` 已存在，请直接编辑它，保留现有配置。密钥只写入本地 `.env`；
+`.env.example` 只保留配置名称和占位值。
+
 通过 OpenAI-compatible 协议接入 DeepSeek：
 
 ```env
