@@ -87,6 +87,20 @@ DEFAULT_PLANNER=simple
 - `codex`：调用 Codex CLI（`codex exec --sandbox workspace-write`），在沙箱内允许工作区写入。
 - `claude`：调用 Claude Code CLI 无头模式（`claude -p`）。默认 `CLAUDE_PERMISSION_MODE=acceptEdits`——只自动接受文件编辑，命令执行仍受权限门禁（验证由 Reviewer 的命令验收承担）。需要执行器自己跑命令时可设为 `bypassPermissions`，这等价于 `--dangerously-skip-permissions`，会跳过所有权限确认，请自行评估风险。两种执行器都受 `EXECUTOR_TIMEOUT_SECONDS` 超时保护。
 
+## 本地检查
+
+安装测试依赖后，可以在项目根目录执行测试：
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+macOS / Linux 使用 `.venv/bin/python -m pytest -q`。上面的测试命令使用项目的
+虚拟环境；若提示找不到 pytest，请重新执行安装命令中的 `pip install -e ".[test]"`。
+
+调试实际模型规划时，先检查 `.env` 中的服务地址、模型名和密钥是否属于同一服务。
+未配置密钥时会降级到 `simple`，因此本地规则规划成功不代表模型接口已连通。
+
 ## Commands
 
 新写项目：
